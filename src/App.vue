@@ -3,23 +3,23 @@
 		<div class="wrapper-content">
 			<section>
 				<div class="container">
-               <h1 class="note-title main-title">{{title}}</h1>
+					<h1 class="note-title main-title">{{ title }}</h1>
 
 					<message :message="message" v-if="message" />
 
 					<newNote :note="note" @addNote="addNote" />
 
-                    <div class="note-header a" style="margin: 36px 0">
-						<h1 class="note-title">{{findYNote}}</h1>
+					<div class="note-header a" style="margin: 36px 0">
+						<h1 class="note-title">{{ findYNote }}</h1>
 						<search :value="search" placeholder="Find your note" @search="search = $event" />
 						<div class="icons">
-							<svg :class="{active: grid}" v-on:click="grid = true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<svg :class="{ active: grid }" v-on:click="grid = true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 								<rect x="3" y="3" width="7" height="7"></rect>
 								<rect x="14" y="3" width="7" height="7"></rect>
 								<rect x="14" y="14" width="7" height="7"></rect>
 								<rect x="3" y="14" width="7" height="7"></rect>
 							</svg>
-                            <svg :class="{active: !grid}" v-on:click="grid = false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<svg :class="{ active: !grid }" v-on:click="grid = false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 								<line x1="8" y1="6" x2="21" y2="6"></line>
 								<line x1="8" y1="12" x2="21" y2="12"></line>
 								<line x1="8" y1="18" x2="21" y2="18"></line>
@@ -32,6 +32,7 @@
 
 					<notes :notes="notesFilter" :grid="grid" @remove="removeNote" />
 				</div>
+				<descr />
 			</section>
 		</div>
 	</div>
@@ -41,17 +42,19 @@ import newNote from "@/components/NewNote.vue/"
 import message from "@/components/Message.vue/"
 import notes from "@/components/Notes.vue/"
 import search from "@/components/Search.vue/"
+import descr from "@/components/Descr.vue/"
 export default {
 	components: {
 		notes,
 		message,
 		newNote,
 		search,
+		descr,
 	},
 	data() {
 		return {
 			title: "Notes App",
-         findYNote: "Find Note",
+			findYNote: "Find Note",
 			search: "",
 			message: false,
 			grid: true,
@@ -101,7 +104,7 @@ export default {
 
 			// for th
 
-			let {title, descr} = this.note
+			let { title, descr } = this.note
 
 			if (title === "") {
 				this.message = "Title can't be empty"
